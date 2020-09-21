@@ -23,4 +23,13 @@ class HttpMacroTest extends TestCase
         $this->artisan('ide-helper:generate');
         $this->expectNotToPerformAssertions();
     }
+
+    public function testHttpMacro_returnsString()
+    {
+        Http::macro('exampleMacro', function () {
+            return 'works';
+        });
+
+        $this->assertEquals('works', Http::exampleMacro());
+    }
 }
